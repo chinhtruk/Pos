@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="vi">
+<html lang="vi" class="reservations-disabled">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,7 +32,7 @@
           <button class="side-link" type="button" data-view="tables" aria-label="Sơ đồ bàn" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Sơ đồ bàn">
             <i class="fa-solid fa-chair" aria-hidden="true"></i><span>Sơ đồ bàn</span>
           </button>
-          <button class="side-link" type="button" data-view="reservations" aria-label="Đặt bàn" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Đặt bàn">
+          <button class="side-link" type="button" data-view="reservations" data-reservation-feature aria-label="Đặt bàn" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Đặt bàn">
             <i class="fa-regular fa-calendar-check" aria-hidden="true"></i><span>Đặt bàn</span>
           </button>
         </nav>
@@ -77,14 +77,15 @@
         <main class="workspace">
           <div class="view-stage">
           <section class="catalog-view app-view" id="menuSection" data-view-panel="sales">
-            <div class="welcome-row">
-              <div>
-                <p class="eyebrow">Không gian làm việc</p>
-                <h1>Chào buổi sáng, Linh <span>👋</span></h1>
-                <p>Chọn bàn và thêm món để bắt đầu phục vụ khách.</p>
+            <div class="sales-command">
+              <div class="sales-command-copy">
+                <p class="eyebrow">Máy POS · Quầy chính</p>
+                <h1>Bán hàng</h1>
+                <p>Chọn bàn, chạm món và hoàn tất thanh toán.</p>
               </div>
-              <div class="welcome-actions">
-                <button class="btn btn-light-action" type="button" data-bs-toggle="modal" data-bs-target="#bookingModal">
+              <div class="sales-command-actions">
+                <span class="system-online"><i></i> Hệ thống online</span>
+                <button class="btn btn-light-action" type="button" data-reservation-feature data-bs-toggle="modal" data-bs-target="#bookingModal">
                   <i class="fa-regular fa-calendar-plus" aria-hidden="true"></i> Đặt bàn
                 </button>
                 <button id="newOrderButton" class="btn btn-primary-action" type="button">
@@ -93,30 +94,25 @@
               </div>
             </div>
 
-            <div class="stats-grid" aria-label="Thống kê ca làm việc">
-              <article class="stat-card">
-                <span class="stat-icon green"><i class="fa-solid fa-wallet" aria-hidden="true"></i></span>
-                <div><small>Doanh thu ca</small><strong>4,820,000 <em>VND</em></strong><span class="trend up"><i class="fa-solid fa-arrow-trend-up"></i> 12.50%</span></div>
-              </article>
-              <article class="stat-card">
-                <span class="stat-icon brown"><i class="fa-solid fa-receipt" aria-hidden="true"></i></span>
-                <div><small>Đơn đã phục vụ</small><strong>38 <em>đơn</em></strong><span>Trung bình 126,800 VND</span></div>
-              </article>
-              <article class="stat-card">
-                <span class="stat-icon gold"><i class="fa-solid fa-chair" aria-hidden="true"></i></span>
-                <div><small>Bàn đang dùng</small><strong><span id="busyTableCount">5</span><em>/ 12 bàn</em></strong><span>Công suất 41.67%</span></div>
-              </article>
-              <article class="stat-card">
-                <span class="stat-icon blue"><i class="fa-regular fa-calendar-check" aria-hidden="true"></i></span>
-                <div><small>Lịch đặt hôm nay</small><strong><span id="reservationCount">6</span> <em>lịch</em></strong><span>Lịch tiếp theo 10:30</span></div>
-              </article>
+            <div class="shift-strip" aria-label="Trạng thái vận hành">
+              <article><span class="shift-strip-icon tables"><i class="fa-solid fa-chair"></i></span><span><small>Đang phục vụ</small><strong><span id="busyTableCount">5</span> bàn</strong></span></article>
+              <article><span class="shift-strip-icon orders"><i class="fa-solid fa-fire-burner"></i></span><span><small>Chờ hoàn tất</small><strong>3 đơn</strong></span></article>
+              <article><span class="shift-strip-icon done"><i class="fa-solid fa-circle-check"></i></span><span><small>Trong ca</small><strong>38 đơn xong</strong></span></article>
             </div>
 
             <section class="tables-section" aria-labelledby="tablesTitle">
               <div class="section-heading">
-                <div><h2 id="tablesTitle">Sơ đồ bàn</h2><p>Chọn bàn để tạo hoặc tiếp tục order</p></div>
-                <div class="table-legend" aria-label="Chú thích trạng thái">
-                  <span><i class="available"></i> Trống</span><span><i class="occupied"></i> Đang dùng</span><span><i class="reserved"></i> Đã đặt</span>
+                <div><h2 id="tablesTitle">Chọn bàn</h2><p>Mở mới hoặc tiếp tục phiên đang phục vụ</p></div>
+                <div class="table-heading-tools">
+                  <div id="tableZoneFilters" class="zone-filters" role="group" aria-label="Khu vực bàn">
+                    <button class="active" type="button" data-table-zone="all" aria-pressed="true">Tất cả</button>
+                    <button type="button" data-table-zone="A" aria-pressed="false">Khu A</button>
+                    <button type="button" data-table-zone="B" aria-pressed="false">Khu B</button>
+                    <button type="button" data-table-zone="C" aria-pressed="false">Khu C</button>
+                  </div>
+                  <div class="table-legend" aria-label="Chú thích trạng thái">
+                    <span><i class="available"></i> Trống</span><span><i class="occupied"></i> Đang dùng</span><span><i class="reserved"></i> Đã đặt</span>
+                  </div>
                 </div>
               </div>
               <div id="tableGrid" class="table-grid" role="group" aria-label="Danh sách bàn"></div>
@@ -124,7 +120,7 @@
 
             <section class="menu-workspace" aria-labelledby="menuTitle">
               <div class="section-heading menu-heading">
-                <div><h2 id="menuTitle">Thực đơn</h2><p><span id="menuCount">12</span> món đang hiển thị</p></div>
+                <div><h2 id="menuTitle">Chọn món</h2><p><span id="menuCount">12</span> sản phẩm sẵn sàng bán</p></div>
                 <div class="menu-search">
                   <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
                   <label class="visually-hidden" for="menuSearch">Tìm món</label>
@@ -139,7 +135,7 @@
           <section class="module-view app-view d-none" data-view-panel="dashboard" aria-label="Tổng quan"><div id="dashboardContent"></div></section>
           <section class="module-view app-view d-none" data-view-panel="orders" aria-label="Đơn hàng"><div id="ordersContent"></div></section>
           <section class="module-view app-view d-none" data-view-panel="tables" aria-label="Quản lý bàn"><div id="tablesContent"></div></section>
-          <section class="module-view app-view d-none" data-view-panel="reservations" aria-label="Lịch đặt bàn"><div id="reservationsContent"></div></section>
+          <section class="module-view app-view d-none" data-view-panel="reservations" data-reservation-feature aria-label="Lịch đặt bàn"><div id="reservationsContent"></div></section>
           <section class="module-view app-view d-none" data-view-panel="settings" aria-label="Cài đặt"><div id="settingsContent"></div></section>
           </div>
 
@@ -190,7 +186,7 @@
       </div>
     </div>
 
-    <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalTitle" aria-hidden="true">
+    <div class="modal fade" id="bookingModal" data-reservation-feature tabindex="-1" aria-labelledby="bookingModalTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
         <div class="modal-content booking-modal">
           <div class="modal-header">
@@ -246,7 +242,7 @@
 
     <div class="offcanvas offcanvas-start mobile-nav-panel" tabindex="-1" id="mobileNav" aria-labelledby="mobileNavTitle">
       <div class="offcanvas-header"><div class="mobile-nav-brand"><i class="fa-solid fa-mug-hot"></i><h2 id="mobileNavTitle">Mộc POS</h2></div><button class="btn-close" type="button" data-bs-dismiss="offcanvas" aria-label="Đóng"></button></div>
-      <div class="offcanvas-body"><nav id="mobileNavLinks" class="mobile-nav-links"><button type="button" data-view="dashboard"><i class="fa-solid fa-chart-pie"></i>Tổng quan</button><button class="active" type="button" data-view="sales"><i class="fa-solid fa-cash-register"></i>Bán hàng</button><button type="button" data-view="orders"><i class="fa-solid fa-receipt"></i>Đơn hàng</button><button type="button" data-view="tables"><i class="fa-solid fa-chair"></i>Sơ đồ bàn</button><button type="button" data-view="reservations"><i class="fa-regular fa-calendar-check"></i>Đặt bàn</button><button type="button" data-view="settings"><i class="fa-solid fa-gear"></i>Cài đặt</button></nav></div>
+      <div class="offcanvas-body"><nav id="mobileNavLinks" class="mobile-nav-links"><button type="button" data-view="dashboard"><i class="fa-solid fa-chart-pie"></i>Tổng quan</button><button class="active" type="button" data-view="sales"><i class="fa-solid fa-cash-register"></i>Bán hàng</button><button type="button" data-view="orders"><i class="fa-solid fa-receipt"></i>Đơn hàng</button><button type="button" data-view="tables"><i class="fa-solid fa-chair"></i>Sơ đồ bàn</button><button type="button" data-view="reservations" data-reservation-feature><i class="fa-regular fa-calendar-check"></i>Đặt bàn</button><button type="button" data-view="settings"><i class="fa-solid fa-gear"></i>Cài đặt</button></nav></div>
     </div>
 
     <div class="offcanvas offcanvas-end notification-panel" tabindex="-1" id="notificationPanel" aria-labelledby="notificationTitle">
