@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f4f1eb">
+    <title>Mộc POS | Bán hàng</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#menuSection">Chuyển đến khu vực bán hàng</a>
+
+    <div class="pos-shell">
+      <aside class="pos-sidebar" aria-label="Điều hướng POS">
+        <a class="sidebar-brand" href="#" aria-label="Mộc POS">
+          <i class="fa-solid fa-mug-hot" aria-hidden="true"></i>
+          <span>Mộc</span>
+        </a>
+
+        <nav class="sidebar-nav">
+          <button class="side-link" type="button" data-view="dashboard" aria-label="Tổng quan" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Tổng quan">
+            <i class="fa-solid fa-chart-pie" aria-hidden="true"></i><span>Tổng quan</span>
+          </button>
+          <button class="side-link active" type="button" data-view="sales" aria-current="page" aria-label="Bán hàng" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Bán hàng">
+            <i class="fa-solid fa-cash-register" aria-hidden="true"></i><span>Bán hàng</span>
+          </button>
+          <button class="side-link" type="button" data-view="orders" aria-label="Đơn hàng" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Đơn hàng">
+            <i class="fa-solid fa-receipt" aria-hidden="true"></i><span>Đơn hàng</span><b class="nav-dot">3</b>
+          </button>
+          <button class="side-link" type="button" data-view="tables" aria-label="Sơ đồ bàn" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Sơ đồ bàn">
+            <i class="fa-solid fa-chair" aria-hidden="true"></i><span>Sơ đồ bàn</span>
+          </button>
+          <button class="side-link" type="button" data-view="reservations" aria-label="Đặt bàn" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Đặt bàn">
+            <i class="fa-regular fa-calendar-check" aria-hidden="true"></i><span>Đặt bàn</span>
+          </button>
+        </nav>
+
+        <div class="sidebar-bottom">
+          <button class="side-link" type="button" data-view="settings" aria-label="Cài đặt" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Cài đặt">
+            <i class="fa-solid fa-gear" aria-hidden="true"></i><span>Cài đặt</span>
+          </button>
+          <button class="staff-avatar" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Tài khoản Linh Nguyễn">LN</button>
+          <ul class="dropdown-menu sidebar-account-menu"><li><button class="dropdown-item" type="button" data-profile-action="profile"><i class="fa-regular fa-user"></i> Hồ sơ</button></li><li><button class="dropdown-item" type="button" data-profile-action="shift"><i class="fa-solid fa-right-from-bracket"></i> Kết ca</button></li></ul>
+        </div>
+      </aside>
+
+      <div class="pos-content">
+        <header class="topbar">
+          <button class="mobile-brand" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileNav" aria-controls="mobileNav"><i class="fa-solid fa-bars" aria-hidden="true"></i><strong>Mộc POS</strong></button>
+          <div class="shift-info d-none d-md-flex">
+            <span class="status-dot"></span>
+            <div><strong>Ca sáng đang mở</strong><small>Bắt đầu lúc 07:00</small></div>
+          </div>
+
+          <div class="topbar-actions ms-auto">
+            <div class="clock-box d-none d-sm-flex">
+              <i class="fa-regular fa-clock" aria-hidden="true"></i>
+              <div><strong id="liveClock">--:--</strong><small id="liveDate">--/--/----</small></div>
+            </div>
+            <button class="icon-button d-none d-sm-grid" type="button" data-bs-toggle="offcanvas" data-bs-target="#notificationPanel" aria-controls="notificationPanel" aria-label="Thông báo">
+              <i class="fa-regular fa-bell" aria-hidden="true"></i><span></span>
+            </button>
+            <div class="dropdown"><button class="staff-chip d-none d-md-flex" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <span class="staff-avatar small">LN</span>
+              <span><strong>Linh Nguyễn</strong><small>Nhân viên phục vụ</small></span>
+              <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+            </button><ul class="dropdown-menu dropdown-menu-end staff-menu"><li><button class="dropdown-item" type="button" data-profile-action="profile"><i class="fa-regular fa-user"></i> Hồ sơ nhân viên</button></li><li><button class="dropdown-item" type="button" data-profile-action="shift"><i class="fa-solid fa-right-from-bracket"></i> Kết ca làm việc</button></li></ul></div>
+            <button class="mobile-ticket-button d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#orderPanel" aria-controls="orderPanel" aria-label="Mở đơn hàng">
+              <i class="fa-solid fa-receipt" aria-hidden="true"></i>
+              <span id="mobileCartBadge">0</span>
+            </button>
+          </div>
+        </header>
+
+        <main class="workspace">
+          <div class="view-stage">
+          <section class="catalog-view app-view" id="menuSection" data-view-panel="sales">
+            <div class="welcome-row">
+              <div>
+                <p class="eyebrow">Không gian làm việc</p>
+                <h1>Chào buổi sáng, Linh <span>👋</span></h1>
+                <p>Chọn bàn và thêm món để bắt đầu phục vụ khách.</p>
+              </div>
+              <div class="welcome-actions">
+                <button class="btn btn-light-action" type="button" data-bs-toggle="modal" data-bs-target="#bookingModal">
+                  <i class="fa-regular fa-calendar-plus" aria-hidden="true"></i> Đặt bàn
+                </button>
+                <button id="newOrderButton" class="btn btn-primary-action" type="button">
+                  <i class="fa-solid fa-plus" aria-hidden="true"></i> Đơn mới
+                </button>
+              </div>
+            </div>
+
+            <div class="stats-grid" aria-label="Thống kê ca làm việc">
+              <article class="stat-card">
+                <span class="stat-icon green"><i class="fa-solid fa-wallet" aria-hidden="true"></i></span>
+                <div><small>Doanh thu ca</small><strong>4,820,000 <em>VND</em></strong><span class="trend up"><i class="fa-solid fa-arrow-trend-up"></i> 12.50%</span></div>
+              </article>
+              <article class="stat-card">
+                <span class="stat-icon brown"><i class="fa-solid fa-receipt" aria-hidden="true"></i></span>
+                <div><small>Đơn đã phục vụ</small><strong>38 <em>đơn</em></strong><span>Trung bình 126,800 VND</span></div>
+              </article>
+              <article class="stat-card">
+                <span class="stat-icon gold"><i class="fa-solid fa-chair" aria-hidden="true"></i></span>
+                <div><small>Bàn đang dùng</small><strong><span id="busyTableCount">5</span><em>/ 12 bàn</em></strong><span>Công suất 41.67%</span></div>
+              </article>
+              <article class="stat-card">
+                <span class="stat-icon blue"><i class="fa-regular fa-calendar-check" aria-hidden="true"></i></span>
+                <div><small>Lịch đặt hôm nay</small><strong><span id="reservationCount">6</span> <em>lịch</em></strong><span>Lịch tiếp theo 10:30</span></div>
+              </article>
+            </div>
+
+            <section class="tables-section" aria-labelledby="tablesTitle">
+              <div class="section-heading">
+                <div><h2 id="tablesTitle">Sơ đồ bàn</h2><p>Chọn bàn để tạo hoặc tiếp tục order</p></div>
+                <div class="table-legend" aria-label="Chú thích trạng thái">
+                  <span><i class="available"></i> Trống</span><span><i class="occupied"></i> Đang dùng</span><span><i class="reserved"></i> Đã đặt</span>
+                </div>
+              </div>
+              <div id="tableGrid" class="table-grid" role="group" aria-label="Danh sách bàn"></div>
+            </section>
+
+            <section class="menu-workspace" aria-labelledby="menuTitle">
+              <div class="section-heading menu-heading">
+                <div><h2 id="menuTitle">Thực đơn</h2><p><span id="menuCount">12</span> món đang hiển thị</p></div>
+                <div class="menu-search">
+                  <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                  <label class="visually-hidden" for="menuSearch">Tìm món</label>
+                  <input id="menuSearch" type="search" placeholder="Tìm tên món..." autocomplete="off">
+                  <kbd>⌘ K</kbd>
+                </div>
+              </div>
+              <div id="categoryFilters" class="category-filters" role="group" aria-label="Danh mục món"></div>
+              <div id="menuGrid" class="menu-grid" aria-live="polite"></div>
+            </section>
+          </section>
+          <section class="module-view app-view d-none" data-view-panel="dashboard" aria-label="Tổng quan"><div id="dashboardContent"></div></section>
+          <section class="module-view app-view d-none" data-view-panel="orders" aria-label="Đơn hàng"><div id="ordersContent"></div></section>
+          <section class="module-view app-view d-none" data-view-panel="tables" aria-label="Quản lý bàn"><div id="tablesContent"></div></section>
+          <section class="module-view app-view d-none" data-view-panel="reservations" aria-label="Lịch đặt bàn"><div id="reservationsContent"></div></section>
+          <section class="module-view app-view d-none" data-view-panel="settings" aria-label="Cài đặt"><div id="settingsContent"></div></section>
+          </div>
+
+          <aside class="offcanvas-lg offcanvas-end order-panel" tabindex="-1" id="orderPanel" aria-labelledby="orderPanelTitle">
+            <div class="order-header">
+              <div><p>Phiếu bán hàng</p><h2 id="orderPanelTitle">Đơn hiện tại</h2></div>
+              <div class="d-flex align-items-center gap-2">
+                <span id="orderNumber" class="order-number">#MC-1049</span>
+                <button class="order-close d-lg-none" type="button" data-bs-dismiss="offcanvas" data-bs-target="#orderPanel" aria-label="Đóng đơn hàng"><i class="fa-solid fa-xmark"></i></button>
+              </div>
+            </div>
+
+            <div class="order-context">
+              <button class="selected-table" type="button" data-bs-toggle="modal" data-bs-target="#tablePickerModal" aria-label="Chọn bàn phục vụ">
+                <span><i class="fa-solid fa-chair" aria-hidden="true"></i></span>
+                <span><small>Bàn phục vụ</small><strong id="selectedTableLabel">Bàn B05</strong></span>
+                <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+              </button>
+              <div id="orderTypeTabs" class="order-type-tabs" role="group" aria-label="Loại đơn">
+                <button class="active" type="button" data-order-type="Tại bàn" aria-pressed="true"><i class="fa-solid fa-utensils"></i> Tại bàn</button>
+                <button type="button" data-order-type="Mang đi" aria-pressed="false"><i class="fa-solid fa-bag-shopping"></i> Mang đi</button>
+              </div>
+            </div>
+
+            <div id="sessionStatus" class="session-status" hidden></div>
+            <div id="orderAlert" class="order-alert" aria-live="polite"></div>
+            <div id="cartItems" class="cart-items"></div>
+
+            <div class="order-footer">
+              <button class="order-note" type="button" data-bs-toggle="modal" data-bs-target="#orderNoteModal"><i class="fa-regular fa-note-sticky"></i> <span id="orderNoteLabel">Thêm ghi chú cho đơn</span></button>
+              <div class="summary-row"><span>Tạm tính</span><strong id="subtotal">0 VND</strong></div>
+              <div class="summary-row"><span>VAT <small>8%</small></span><strong id="tax">0 VND</strong></div>
+              <div class="summary-row total"><span>Khách cần trả</span><strong id="grandTotal">0 VND</strong></div>
+              <div id="paymentMethods" class="payment-methods" role="group" aria-label="Phương thức thanh toán">
+                <button class="active" type="button" data-payment="Tiền mặt" aria-pressed="true"><i class="fa-solid fa-money-bill-wave"></i><span>Tiền mặt</span></button>
+                <button type="button" data-payment="Thẻ" aria-pressed="false"><i class="fa-regular fa-credit-card"></i><span>Thẻ</span></button>
+                <button type="button" data-payment="Chuyển khoản" aria-pressed="false"><i class="fa-solid fa-qrcode"></i><span>QR</span></button>
+              </div>
+              <button id="checkoutButton" class="checkout-button" type="button" disabled>
+                <span>Thanh toán</span><strong id="checkoutTotal">0 VND</strong>
+              </button>
+              <button id="endSessionButton" class="end-session-button" type="button" hidden>
+                <span><i class="fa-solid fa-door-open"></i> Khách đã đi</span><strong>Kết thúc đơn</strong>
+              </button>
+            </div>
+          </aside>
+        </main>
+      </div>
+    </div>
+
+    <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+        <div class="modal-content booking-modal">
+          <div class="modal-header">
+            <div><p>Quản lý bàn</p><h2 class="modal-title" id="bookingModalTitle">Tạo lịch đặt bàn</h2></div>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+          </div>
+          <form id="bookingForm" novalidate>
+            <div class="modal-body">
+              <div class="row g-3">
+                <div class="col-md-6"><label class="form-label" for="fullName">Tên khách hàng</label><input id="fullName" name="fullName" class="form-control" autocomplete="name" required minlength="2" placeholder="Nguyễn Minh Anh"><div class="invalid-feedback">Vui lòng nhập tên khách.</div></div>
+                <div class="col-md-6"><label class="form-label" for="phone">Số điện thoại</label><input id="phone" name="phone" class="form-control" type="tel" autocomplete="tel" inputmode="tel" required placeholder="0901 234 567"><div class="invalid-feedback">Số điện thoại chưa hợp lệ.</div></div>
+                <div class="col-sm-6 col-md-3"><label class="form-label" for="bookingDate">Ngày</label><input id="bookingDate" name="date" class="form-control" type="date" required><div class="invalid-feedback">Chọn ngày.</div></div>
+                <div class="col-sm-6 col-md-3"><label class="form-label" for="bookingTime">Giờ</label><input id="bookingTime" name="time" class="form-control" type="time" min="07:00" max="21:30" required><div class="invalid-feedback">Chọn giờ hợp lệ.</div></div>
+                <div class="col-sm-6 col-md-3"><label class="form-label" for="guests">Số khách</label><select id="guests" name="guests" class="form-select" required><option value="" selected disabled>Chọn</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option></select><div class="invalid-feedback">Chọn số khách.</div></div>
+                <div class="col-sm-6 col-md-3"><label class="form-label" for="bookingTable">Bàn dự kiến</label><select id="bookingTable" name="table" class="form-select" required><option value="" selected disabled>Chọn bàn</option></select><div class="invalid-feedback">Chọn bàn.</div></div>
+                <div class="col-12"><label class="form-label" for="notes">Ghi chú <span>(không bắt buộc)</span></label><textarea id="notes" name="notes" class="form-control" rows="3" maxlength="300" placeholder="Sinh nhật, ghế trẻ em, vị trí ngồi..."></textarea><small class="char-count"><span id="notesCount">0</span>/300</small></div>
+              </div>
+            </div>
+            <div class="modal-footer"><button type="button" class="btn btn-modal-light" data-bs-dismiss="modal">Hủy</button><button type="submit" class="btn btn-primary-action">Xác nhận đặt bàn</button></div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="tablePickerModal" tabindex="-1" aria-labelledby="tablePickerTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content booking-modal">
+          <div class="modal-header"><div><p>Phiếu bán hàng</p><h2 class="modal-title" id="tablePickerTitle">Chọn bàn phục vụ</h2></div><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button></div>
+          <div class="modal-body"><div id="tablePickerGrid" class="picker-grid"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="orderNoteModal" tabindex="-1" aria-labelledby="orderNoteTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content booking-modal">
+          <div class="modal-header"><div><p>Phiếu bán hàng</p><h2 class="modal-title" id="orderNoteTitle">Ghi chú cho đơn</h2></div><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button></div>
+          <div class="modal-body"><label class="form-label" for="orderNoteInput">Nội dung ghi chú</label><textarea id="orderNoteInput" class="form-control" rows="4" maxlength="200" placeholder="Ít đá, phục vụ bánh sau đồ uống..."></textarea></div>
+          <div class="modal-footer"><button class="btn btn-modal-light" type="button" data-bs-dismiss="modal">Hủy</button><button id="saveOrderNote" class="btn btn-primary-action" type="button">Lưu ghi chú</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="orderDetailModal" tabindex="-1" aria-labelledby="orderDetailTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+        <div class="modal-content booking-modal">
+          <div class="modal-header"><div><p>Chi tiết giao dịch</p><h2 class="modal-title" id="orderDetailTitle">Chi tiết đơn</h2></div><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button></div>
+          <div id="orderDetailBody" class="modal-body"></div>
+          <div class="modal-footer"><button class="btn btn-modal-light" type="button" data-bs-dismiss="modal">Đóng</button><button id="advanceOrderButton" class="btn btn-primary-action" type="button">Cập nhật trạng thái</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="offcanvas offcanvas-start mobile-nav-panel" tabindex="-1" id="mobileNav" aria-labelledby="mobileNavTitle">
+      <div class="offcanvas-header"><div class="mobile-nav-brand"><i class="fa-solid fa-mug-hot"></i><h2 id="mobileNavTitle">Mộc POS</h2></div><button class="btn-close" type="button" data-bs-dismiss="offcanvas" aria-label="Đóng"></button></div>
+      <div class="offcanvas-body"><nav id="mobileNavLinks" class="mobile-nav-links"><button type="button" data-view="dashboard"><i class="fa-solid fa-chart-pie"></i>Tổng quan</button><button class="active" type="button" data-view="sales"><i class="fa-solid fa-cash-register"></i>Bán hàng</button><button type="button" data-view="orders"><i class="fa-solid fa-receipt"></i>Đơn hàng</button><button type="button" data-view="tables"><i class="fa-solid fa-chair"></i>Sơ đồ bàn</button><button type="button" data-view="reservations"><i class="fa-regular fa-calendar-check"></i>Đặt bàn</button><button type="button" data-view="settings"><i class="fa-solid fa-gear"></i>Cài đặt</button></nav></div>
+    </div>
+
+    <div class="offcanvas offcanvas-end notification-panel" tabindex="-1" id="notificationPanel" aria-labelledby="notificationTitle">
+      <div class="offcanvas-header"><div><p class="eyebrow mb-1">Trung tâm cập nhật</p><h2 id="notificationTitle">Thông báo</h2></div><button class="btn-close" type="button" data-bs-dismiss="offcanvas" aria-label="Đóng"></button></div>
+      <div class="notification-actions"><button id="markNotificationsRead" type="button">Đánh dấu tất cả đã đọc</button></div>
+      <div id="notificationList" class="notification-list"></div>
+    </div>
+
+    <div class="toast-container position-fixed top-0 start-50 translate-middle-x p-3">
+      <div id="appToast" class="toast app-toast" role="status" aria-live="polite" aria-atomic="true">
+        <div class="toast-body"><span class="toast-icon"><i class="fa-solid fa-check"></i></span><div><strong id="toastTitle">Thành công</strong><p id="toastMessage" class="mb-0"></p></div><button type="button" class="btn-close ms-auto" data-bs-dismiss="toast" aria-label="Đóng"></button></div>
+      </div>
+    </div>
+    <div id="statusMessage" class="visually-hidden" role="status" aria-live="polite"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
